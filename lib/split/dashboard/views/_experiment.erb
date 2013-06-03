@@ -29,7 +29,11 @@
       <th>Alternative Name</th>
       <th>Participants</th>
       <th>Non-finished</th>
-      <th>Completed</th>
+      <% if experiment.goals.present? %>
+        <% experiment.goals.each do |goal| %>
+          <th><%= goal %></th>
+        <% end %>
+      <% end %>
       <th>Conversion Rate</th>
       <th>Confidence</th>
       <th>Finish</th>
@@ -46,7 +50,11 @@
         </td>
         <td><%= alternative.participant_count %></td>
         <td><%= alternative.unfinished_count %></td>
-        <td><%= alternative.completed_count(goal) %></td>
+        <% if experiment.goals.present? %>
+          <% experiment.goals.each do |goal| %>
+            <td><%= alternative.completed_count(goal) %></td>
+          <% end %>
+        <% end %>
         <td>
           <%= number_to_percentage(alternative.conversion_rate(goal)) %>%
           <% if experiment.control.conversion_rate(goal) > 0 && !alternative.control? %>
@@ -89,7 +97,15 @@
       <td>Totals</td>
       <td><%= total_participants %></td>
       <td><%= total_unfinished %></td>
-      <td><%= total_completed %></td>
+      <% if experiment.goals.present? %>
+        <% experiment.goals.each do |goal| %>
+          <% @total = 0 %>
+          <% experiment.alternatives.each do |alternative| %>
+            <% @total += alternative.completed_count(goal) %>
+          <% end %>
+          <td><%= @total.to_s %></td>
+        <% end %>
+      <% end %>
       <td>N/A</td>
       <td>N/A</td>
       <td>N/A</td>
