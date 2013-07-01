@@ -60,8 +60,6 @@
           <% experiment.goals.each do |goal| %>
             <% goal_count += alternative.completed_count(goal) %>
           <% end %>
-          <%= "goal count: #{goal_count}" %>
-          <%= "participant_count: #{alternative.participant_count}" %>
           <% 
             if alternative.participant_count > 0
               goal_count = (goal_count.to_f / alternative.participant_count.to_f)*100 
