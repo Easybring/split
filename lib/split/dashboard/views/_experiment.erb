@@ -64,12 +64,12 @@
           <%= "participant_count: #{alternative.participant_count}" %>
           <% 
             if alternative.participant_count > 0
-              goal_count = (goal_count / alternative.participant_count)*100 
+              goal_count = (goal_count.to_f / alternative.participant_count.to_f)*100 
             else
               goal_count = 0
             end
           %>
-          <%= goal_count %>%
+          <%= goal_count.to_f %>%
           <% if experiment.control.conversion_rate(goal) > 0 && !alternative.control? %>
             <% if alternative.conversion_rate(goal) > experiment.control.conversion_rate(goal) %>
               <span class='better'>
