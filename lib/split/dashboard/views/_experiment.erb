@@ -55,8 +55,15 @@
             <td><%= alternative.completed_count(goal) %></td>
           <% end %>
         <% end %>
-        <td>
-          <%= number_to_percentage(alternative.conversion_rate(goal)) %>%
+        <td>          
+          <% experiment.goals.each do |goal| %>
+            <% 
+              goal_count = 0 
+              goal_count += alternative.completed_count(goal)
+            %>
+          <% end %>
+          <%= goal_count %>%
+          <%# number_to_percentage(alternative.conversion_rate(goal)) %>%
           <% if experiment.control.conversion_rate(goal) > 0 && !alternative.control? %>
             <% if alternative.conversion_rate(goal) > experiment.control.conversion_rate(goal) %>
               <span class='better'>
