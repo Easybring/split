@@ -61,10 +61,11 @@
             <% goal_count += alternative.completed_count(goal) %>
           <% end %>
           <% 
-            if alternative>0
+            if alternative > 0
               goal_count = (goal_count / alternative.participant_count)*100 
             else
               goal_count = 0
+            end
           %>
           <%= goal_count %>%
           <%# number_to_percentage(alternative.conversion_rate(goal)) %>
