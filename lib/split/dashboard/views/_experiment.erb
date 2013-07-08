@@ -127,6 +127,8 @@
           <% @total = alternative.completed_count() %>
         <% end %>
         <td><%= @total %></td>
+      <% else %>
+        <td>N/A</td>
       <% end %>
       <td>N/A</td>
       <td>N/A</td>
