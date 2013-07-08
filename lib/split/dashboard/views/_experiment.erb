@@ -35,6 +35,7 @@
         <% end %>
       <% end %>
       <th>Conversion Rate</th>
+      <th>Conversions</th>
       <th>Confidence</th>
       <th>Finish</th>
     </tr>
@@ -62,12 +63,12 @@
           <% end %>
           <% 
             if alternative.participant_count > 0
-              goal_count = (goal_count.to_f / alternative.participant_count.to_f)*100 
+              goal_count_percent = (goal_count.to_f / alternative.participant_count.to_f)*100 
             else
-              goal_count = 0
+              goal_count_percent = 0
             end
           %>
-          <%= goal_count.to_f %>%
+          <%= goal_count_percent.to_f.round %>%
           <% if experiment.control.conversion_rate(goal) > 0 && !alternative.control? %>
             <% if alternative.conversion_rate(goal) > experiment.control.conversion_rate(goal) %>
               <span class='better'>
@@ -79,6 +80,9 @@
               </span>
             <% end  %>
           <% end %>
+        </td>
+        <td>
+          <%= goal_count %>
         </td>
         <td>
           <span title='z-score: <%= round(alternative.z_score(goal), 3) %>'><%= confidence_level(alternative.z_score()) %></span>
