@@ -120,15 +120,15 @@
           <% end %>
           <td><%= @total.to_s %></td>
         <% end %>
-      <% else %>
+      <% end %>
+      <td>N/A</td>
+      <td>N/A</td>
+      <% unless experiment.goals.present? %>
         <% experiment.alternatives.each do |alternative| %>
           <% @total = alternative.completed_count() %>
         <% end %>
         <td><%= @total %></td>
       <% end %>
-      <td>N/A</td>
-      <td>N/A</td>
-      <td>N/A</td>
       <td>N/A</td>
     </tr>
   </table>
