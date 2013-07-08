@@ -122,7 +122,7 @@
         <% end %>
       <% else %>
         <% experiment.alternatives.each do |alternative| %>
-          <% @total += alternative.completed_count() %>
+          <% @total = alternative.completed_count() %>
         <% end %>
         <td><%= @total %></td>
       <% end %>
