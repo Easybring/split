@@ -62,6 +62,12 @@
             <% goal_count += alternative.completed_count(goal) %>
           <% end %>
           <% 
+            unless experiment.goals.present?
+                goal_count += alternative.completed_count()
+            end
+          %>
+
+          <% 
             if alternative.participant_count > 0
               goal_count_percent = (goal_count.to_f / alternative.participant_count.to_f)*100 
             else
