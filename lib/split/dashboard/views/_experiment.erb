@@ -137,7 +137,13 @@
           <td><%= total_completed.to_s %></td>
         <% end %>
       <% end %>
-      <td><%= ((total_completed.to_f / total_participants.to_f) * 100).to_f.round %>%</td>
+      <td>
+        <% begin %>
+          <%= ((total_completed.to_f / total_participants.to_f) * 100).to_f.round %>%
+          <% rescue %>
+            N/A
+          <% end %>
+      </td>
       <% experiment.alternatives.each do |alternative| %>
         <% total_completed = alternative.completed_count() %>
       <% end %>
