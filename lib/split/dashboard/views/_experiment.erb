@@ -130,18 +130,18 @@
       <td><%= total_unfinished %></td>
       <% if experiment.goals.present? %>
         <% experiment.goals.each do |goal| %>
-          <% @total = 0 %>
+          <% total_completed = 0 %>
           <% experiment.alternatives.each do |alternative| %>
-            <% @total += alternative.completed_count(goal) %>
+            <% total_completed += alternative.completed_count(goal) %>
           <% end %>
-          <td><%= @total.to_s %></td>
+          <td><%= total_completed.to_s %></td>
         <% end %>
       <% end %>
-      <td>comp = <%= total_completed %> part = <%= total_participants %> <%= ((total_completed / total_participants) * 100) %>%</td>
+      <td>comp = <%= total_completed %> part = <%= total_participants %> <%= ((total_completed.to_f / total_participants.to_f) * 100).round %>%</td>
       <% experiment.alternatives.each do |alternative| %>
-        <% @total = alternative.completed_count() %>
+        <% total_completed = alternative.completed_count() %>
       <% end %>
-      <td><%= @total %></td>
+      <td><%= total_completed %></td>
       <td>N/A</td>
       <td>N/A</td>
     </tr>
