@@ -83,7 +83,7 @@
           <% end %>
         </td>
         <td>
-          <%= goal_count %>
+          <%= alternative.completed_count %>
         </td>
         <td>
           <span title='z-score: <%= round(alternative.z_score(goal), 3) %>'><%= confidence_level(alternative.z_score()) %></span>
