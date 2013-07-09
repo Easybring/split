@@ -128,7 +128,7 @@
           <td><%= @total.to_s %></td>
         <% end %>
       <% end %>
-      <td><%= total_conversions_percent.round %>%</td>
+      <td><%= (total_conversions_percent / experiment.alternatives.length||0).round %>%</td>
       <% experiment.alternatives.each do |alternative| %>
         <% @total = alternative.completed_count() %>
       <% end %>
