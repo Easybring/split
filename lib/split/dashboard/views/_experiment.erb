@@ -112,8 +112,14 @@
       <% end %>
 
       <% total_participants = (total_participants.to_i() + alternative.participant_count.to_i()) %>
+      <% unless total_unfinished.present? %>
+        <% total_unfinished = 0 %>
+      <% end %>
       <% total_unfinished += alternative.unfinished_count %>
-      <% @total_completed += alternative.completed_count %>
+      <% unless total_completed.present? %>
+        <% total_completed = 0 %>
+      <% end %>
+      <% total_completed += alternative.completed_count %>
     <% end %>
 
     <tr class="totals">
@@ -129,7 +135,7 @@
           <td><%= @total.to_s %></td>
         <% end %>
       <% end %>
-      <td>comp = <%= @total_completed %> part = <%= total_participants %> <%= ((@total_completed / total_participants) * 100) %>%</td>
+      <td>comp = <%= total_completed %> part = <%= total_participants %> <%= ((total_completed / total_participants) * 100) %>%</td>
       <% experiment.alternatives.each do |alternative| %>
         <% @total = alternative.completed_count() %>
       <% end %>
