@@ -39,7 +39,7 @@
       <th>Confidence</th>
       <th>Finish</th>
     </tr>
-
+    <% total_conversions_percent = 0 %>
     <% total_participants = total_completed = total_unfinished = 0 %>
     <% experiment.alternatives.each do |alternative| %>
       <tr>
@@ -67,6 +67,7 @@
             else
               goal_count_percent = 0
             end
+            total_conversions_percent += goal_count_percent
           %>
           <%= goal_count_percent.to_f.round %>%
           <% if experiment.control.conversion_rate(goal) > 0 && !alternative.control? %>
@@ -121,15 +122,11 @@
           <td><%= @total.to_s %></td>
         <% end %>
       <% end %>
-      <td>N/A</td>
-      <% unless experiment.goals.present? %>
-        <% experiment.alternatives.each do |alternative| %>
-          <% @total = alternative.completed_count() %>
-        <% end %>
-        <td><%= @total %></td>
-      <% else %>
-        <td>N/A</td>
+      <td><%= total_conversions_percent.round %>%</td>
+      <% experiment.alternatives.each do |alternative| %>
+        <% @total = alternative.completed_count() %>
       <% end %>
+      <td><%= @total %></td>
       <td>N/A</td>
       <td>N/A</td>
     </tr>
