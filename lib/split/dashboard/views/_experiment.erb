@@ -107,7 +107,7 @@
           <% end %>
         </td>
       </tr>
-      <% @total_participants.to_i() = (@total_participants.to_i() + alternative.participant_count.to_i()) %>
+      <% @total_participants = (@total_participants.to_i() + alternative.participant_count.to_i()) %>
       <% total_unfinished += alternative.unfinished_count %>
       <% @total_completed += alternative.completed_count %>
     <% end %>
