@@ -39,7 +39,7 @@
       <th>Confidence</th>
       <th>Finish</th>
     </tr>
-    <% @total_participants = total_completed = total_unfinished = 0 %>
+    <% @total_participants = 0 %>
     <% experiment.alternatives.each do |alternative| %>
       <tr>
         <td>
@@ -107,8 +107,7 @@
           <% end %>
         </td>
       </tr>
-
-      <% @total_participants += alternative.participant_count %>
+      <% @total_participants.to_f += alternative.participant_count.to_f %>
       <% total_unfinished += alternative.unfinished_count %>
       <% @total_completed += alternative.completed_count %>
     <% end %>
