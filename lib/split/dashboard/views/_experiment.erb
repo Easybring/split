@@ -110,7 +110,7 @@
 
       <% total_participants += alternative.participant_count %>
       <% total_unfinished += alternative.unfinished_count %>
-      <% total_completed += alternative.completed_count(goal) %>
+      <% total_completed += alternative.completed_count() %>
     <% end %>
 
     <tr class="totals">
