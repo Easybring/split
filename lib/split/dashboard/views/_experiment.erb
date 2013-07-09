@@ -40,6 +40,8 @@
       <th>Finish</th>
     </tr>
     <% total_participants = 0.to_i %>
+    <% total_unfinished = 0.to_i %>
+    <% total_completed = 0.to_i %>
     <% experiment.alternatives.each do |alternative| %>
       <tr>
         <td>
