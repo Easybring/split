@@ -58,7 +58,7 @@
           <% end %>
         <% end %>
         <td>        
-          <% goal_count = 0  %>  
+          <% goal_count = 0  %>
           <% experiment.goals.each do |goal| %>
             <% goal_count += alternative.completed_count(goal) %>
           <% end %>
@@ -89,7 +89,8 @@
           <% end %>
         </td>
         <td>
-          <%= alternative.completed_count %>
+          <%= goal_count %>
+          <%# alternative.completed_count %>
         </td>
         <td>
           <span title='z-score: <%= round(alternative.z_score(goal), 3) %>'><%= confidence_level(alternative.z_score()) %></span>
